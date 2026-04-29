@@ -15,7 +15,7 @@ const Register = async (
       },
       {
         headers: {
-          "x-nombre": "Alberto",
+          "x-nombre": "albertoprieto",
         },
       }
     );

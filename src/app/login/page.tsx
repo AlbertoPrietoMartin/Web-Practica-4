@@ -39,7 +39,7 @@ const PaginaIdentificacion = () =>{
 
                         const token = res.token;
 
-                        document.cookie = `Authorization=Bearer ${token}; path=/`;
+                        document.cookie = `token=${token}; path=/`;
 
                         console.log("COOKIE:", document.cookie);
 
@@ -74,7 +74,7 @@ const PaginaIdentificacion = () =>{
                                   console.log("CLICK EN CREAR CUENTA");
 
                                 const token = res.token
-                                document.cookie = `Authorization=Bearer ${token}; path=/`
+                                document.cookie = `token=${token}; path=/`;
                                 router.push("/principal")
                             })
                         }}>Crear Cuenta</button>
