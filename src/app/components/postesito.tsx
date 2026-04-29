@@ -1,10 +1,15 @@
 import { Post } from "@/app/types"
 
-const Postesito = ({post}: {post : Post}) =>{
-
-    return(
+const Postesito = ({post}: {post: Post}) => {
+    return (
         <div>
-            <h1>{post.autor.username}</h1>  
+            <h2>{post.autor.username}</h2>
+            <p>{post.contenido}</p>
+            <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+            <div>
+                <button>❤️ {post.likes.length}</button>
+                <button>🔁 {post.retweets.length}</button>
+            </div>
         </div>
     )
 }

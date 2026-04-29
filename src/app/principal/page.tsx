@@ -19,8 +19,8 @@ const principal = () =>{
 
     return (
         <div>
-            {posts && posts.map((e)=>{
-                return <Postesito post={e}></Postesito>
+            {posts && posts.map((e) => {
+                return <Postesito key={e._id} post={e}></Postesito>
             })}
 
             
