@@ -1,12 +1,12 @@
 import api from "./api"
 
-const Home = async (pagina: number = 1) => {
+const DarRetweet = async (postId: string) => {
     const token = document.cookie
         .split("; ")
         .find(r => r.startsWith("token="))
         ?.split("=")[1];
 
-    const respuesta = await api.get(`/api/home?page=${pagina}`, {
+    const respuesta = await api.post(`/api/posts/${postId}/retweet`, {}, {
         headers: {
             "x-nombre": "albertoprieto",
             "Authorization": `Bearer ${token}`
@@ -15,4 +15,4 @@ const Home = async (pagina: number = 1) => {
     return respuesta.data;
 }
 
-export default Home;
+export default DarRetweet;
