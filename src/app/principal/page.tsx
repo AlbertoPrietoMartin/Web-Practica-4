@@ -31,8 +31,8 @@ const Principal = () => {
     }
 
     return (
-        <div>
-            <div>
+        <div className="contenedor">
+            <div className="form-post">
                 <textarea
                     placeholder="Qué está pasando?"
                     value={contenido}
@@ -43,7 +43,7 @@ const Principal = () => {
             {posts && posts.map((e) => (
                 <Postesito key={e._id} post={e} onRefresh={() => cargarPosts(pagina)}></Postesito>
             ))}
-            <div>
+            <div className="paginacion">
                 <button onClick={() => setPagina(p => p - 1)} disabled={pagina === 1}>← Anterior</button>
                 <span>Página {pagina} de {totalPaginas}</span>
                 <button onClick={() => setPagina(p => p + 1)} disabled={pagina === totalPaginas}>Siguiente →</button>

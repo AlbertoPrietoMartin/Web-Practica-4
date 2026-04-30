@@ -42,31 +42,30 @@ const PaginaPost = () => {
         cargarPost()
     }
 
-    if (!post) return <p>Cargando...</p>
+    if (!post) return <p className="contenedor">Cargando...</p>
 
     return (
-        <div>
-            <button onClick={() => router.push("/principal")}>← Volver</button>
-            <div>
-                <h2>{post.autor.username}</h2>
+        <div className="contenedor">
+            <div className="post-detalle">
+                <h2 onClick={() => router.push(`/perfil/${post.autor._id}`)}>{post.autor.username}</h2>
                 <p>{post.contenido}</p>
-                <span>{new Date(post.createdAt).toLocaleDateString()}</span>
-                <div>
+                <span className="post-fecha">{new Date(post.createdAt).toLocaleDateString()}</span>
+                <div className="post-acciones">
                     <button onClick={handleLike}>❤️ {post.likes.length}</button>
                     <button onClick={handleRetweet}>🔁 {post.retweets.length}</button>
                 </div>
             </div>
             <div>
-                <h3>Comentarios</h3>
+                <h3 className="comentarios-titulo">Comentarios</h3>
                 {post.comentarios.map((c) => (
-                    <div key={c._id}>
+                    <div key={c._id} className="comentario">
                         <strong>{c.autor.username}</strong>
                         <p>{c.contenido}</p>
                         <span>{new Date(c.fecha).toLocaleDateString()}</span>
                     </div>
                 ))}
             </div>
-            <div>
+            <div className="form-comentario">
                 <textarea
                     placeholder="Escribe un comentario..."
                     value={comentario}

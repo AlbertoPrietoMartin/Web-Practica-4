@@ -1,4 +1,3 @@
-// app/perfil/[id]/page.tsx
 "use client"
 import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
@@ -40,22 +39,20 @@ const PaginaPerfil = () => {
         cargarPerfil()
     }
 
-    if (!perfil) return <p>Cargando...</p>
+    if (!perfil) return <p className="contenedor">Cargando...</p>
 
     return (
-        <div>
-            <button onClick={() => router.push("/principal")}>Home</button>
-            <div>
+        <div className="contenedor">
+            <div className="perfil-card">
                 <h1>{perfil.user.username}</h1>
                 <p>{perfil.user.bio}</p>
-                <div>
+                <div className="perfil-stats">
                     <span>Seguidores: {perfil.user.seguidores.length}</span>
                     <span>Seguidos: {perfil.user.seguidos.length}</span>
                 </div>
-                <button onClick={handleSeguir}>Seguir / Dejar de seguir</button>
+                <button className="btn-seguir" onClick={handleSeguir}>Seguir / Dejar de seguir</button>
             </div>
             <div>
-                <h2>Posts</h2>
                 {perfil.posts && perfil.posts.map((p) => (
                     <Postesito key={p._id} post={p} onRefresh={cargarPerfil}></Postesito>
                 ))}

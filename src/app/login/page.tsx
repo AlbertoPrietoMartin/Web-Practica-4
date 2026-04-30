@@ -14,21 +14,22 @@ const PaginaIdentificacion = () =>{
     const [password, setPassword] = useState<string>("")    
 
     return(
-        <div>
+        <div className="login-wrapper">
+            <div className="login-card">
             <h1>NebrijaSocial</h1>
 
 
-            <div>
-                <button onClick={()=>setiniciarSesion(true)}> Iniciar Sesion</button>
-                <button onClick={()=>{setiniciarSesion(false); console.log("boton iniciar sesion")}}> Crear Cuenta</button>
+            <div className="login-tabs">
+                <button className={iniciarSesion ? "activo" : ""} onClick={()=>setiniciarSesion(true)}> Iniciar Sesion</button>
+                <button className={!iniciarSesion ? "activo" : ""} onClick={()=>{setiniciarSesion(false); console.log("boton iniciar sesion")}}> Crear Cuenta</button>
                 <div>
                     {iniciarSesion && (
                         <div>
-                        <p>Email</p>    
-                        <input placeholder="tu@nebrija.es" onChange={(e) => setEmail(e.target.value)}></input>
-                        <p>Contraseña</p>
-                        <input placeholder="******" onChange={(e) => setPassword(e.target.value)}></input>
-                        <button onClick={async () => {
+                        <div className="login-campo"><p>Email</p>    
+                        <input placeholder="tu@nebrija.es" onChange={(e) => setEmail(e.target.value)}></input></div>
+                        <div className="login-campo"><p>Contraseña</p>
+                        <input placeholder="******" onChange={(e) => setPassword(e.target.value)}></input></div>
+                        <button className="btn-submit" onClick={async () => {
                         
                         
                         console.log("CLICK LOGIN");
@@ -38,13 +39,12 @@ const PaginaIdentificacion = () =>{
                         console.log("RESPUESTA:", res);
 
                         const token = res.token;
+                        const userId = res.user._id;
 
                         document.cookie = `token=${token}; path=/`;
 
-                        console.log("COOKIE:", document.cookie);
+                        document.cookie = `userId=${userId}; path=/`;
 
-                        console.log("EMAIL:", email);
-                        console.log("PASSWORD:", password);
 
                         router.push("/principal");
                     } catch (e) {
@@ -58,13 +58,13 @@ const PaginaIdentificacion = () =>{
                 )}
                     {!iniciarSesion && (
                         <div>
-                        <p>Username</p>    
-                        <input placeholder="tu_usuario" onChange={(e) => setUsername(e.target.value)}></input>
-                        <p>Email</p>    
-                        <input placeholder="tu@nebrija.es" onChange={(e) => setEmail(e.target.value)}></input>
-                        <p>Contraseña</p>
-                        <input placeholder="*****" onChange={(e) => setPassword(e.target.value)}></input>
-                        <button onClick={()=>{
+                        <div className="login-campo"><p>Username</p>    
+                        <input placeholder="tu_usuario" onChange={(e) => setUsername(e.target.value)}></input></div>
+                        <div className="login-campo"><p>Email</p>    
+                        <input placeholder="tu@nebrija.es" onChange={(e) => setEmail(e.target.value)}></input></div>
+                        <div className="login-campo"><p>Contraseña</p>
+                        <input placeholder="*****" onChange={(e) => setPassword(e.target.value)}></input></div>
+                        <button className="btn-submit" onClick={()=>{
                             
                             Register(username,email,password).then((res)=>{
                                 if(!res) {
@@ -73,15 +73,19 @@ const PaginaIdentificacion = () =>{
                                 }
                                   console.log("CLICK EN CREAR CUENTA");
 
-                                const token = res.token
+                                console.log("CLICK EN CREAR CUENTA");
+                                const token = res.token;
+                                const userId = res.user._id;
                                 document.cookie = `token=${token}; path=/`;
-                                router.push("/principal")
+                                document.cookie = `userId=${userId}; path=/`;
+                                router.push("/principal");
                             })
                         }}>Crear Cuenta</button>
                      </div>
                 )}
                 </div>
                 
+            </div>
             </div>
         </div>  
     )

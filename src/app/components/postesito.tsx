@@ -1,4 +1,3 @@
-// app/components/postesito.tsx
 import { Post } from "@/app/types"
 import DarLike from "@/api/like"
 import DarRetweet from "@/api/retweet"
@@ -29,15 +28,15 @@ const Postesito = ({post, onRefresh}: {post: Post, onRefresh: () => void}) => {
     }
 
     return (
-        <div>
-            <h2 onClick={handleAutor} style={{cursor: "pointer"}}>
+        <div className="post">
+            <h2 className="post-autor" onClick={handleAutor}>
                 {post.autor.username}
             </h2>
-            <div onClick={handlePost} style={{cursor: "pointer"}}>
-                <p>{post.contenido}</p>
-                <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+            <div onClick={handlePost}>
+                <p className="post-contenido">{post.contenido}</p>
+                <span className="post-fecha">{new Date(post.createdAt).toLocaleDateString()}</span>
             </div>
-            <div>
+            <div className="post-acciones">
                 <button onClick={handleLike}>❤️ {post.likes.length}</button>
                 <button onClick={handleRetweet}>🔁 {post.retweets.length}</button>
             </div>
